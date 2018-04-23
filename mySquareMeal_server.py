@@ -11,7 +11,7 @@ app=Flask(__name__)
 @app.route("/")
 def index():
     #return "index page ....!!!"
-    return render_template('templates/welcome.html')
+    return render_template('welcome.html')
 
 @app.route("/registration", methods=['POST'])
 def user_registration():
