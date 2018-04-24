@@ -8,25 +8,25 @@
 	<meta name="description" content="">
 	<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
 	<!-- bootstrap -->
-	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
-	<link href="themes/css/bootstrappage.css" rel="stylesheet" />
+	<link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../static/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+	<link href="../static/css/bootstrappage.css" rel="stylesheet" />
 
 	<!-- global styles -->
-	<link href="themes/css/flexslider.css" rel="stylesheet" />
-	<link href="themes/css/main.css" rel="stylesheet" />
+	<link href="../static/css/flexslider.css" rel="stylesheet" />
+	<link href="../static/css/main.css" rel="stylesheet" />
 
 	<!-- scripts -->
 	<script
 			src="https://code.jquery.com/jquery-3.3.1.min.js"
 			integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 			crossorigin="anonymous"></script>
-	<script src="bootstrap/js/bootstrap.min.js"></script>
-	<script src="themes/js/superfish.js"></script>
-	<script src="themes/js/jquery.scrolltotop.js"></script>
+	<script src="../static/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../static/js/superfish.js"></script>
+	<script src="../static/js/jquery.scrolltotop.js"></script>
 	<!--[if lt IE 9]>
-	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<script src="js/respond.min.js"></script>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js	"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
 	<![endif]-->
 	<script>
 
@@ -36,12 +36,12 @@
             var ul = $('#r_list');
             var r_data = [];
 
-            $.getJSON("http://localhost:63342/295%20Project/api/response.json?", function(data) {
+            $.getJSON("../api/response.json?", function(data) {
                 $.each(data, function(i, f) {
                     r_data.push([f.restaurant_name, f.address.street_address, f.address.city, f.address.zip, f.menu_data]);
-                    ul.append('<li class="span3"><div class="product-box"><span class="sale_tag"></span><br/><a href="#' + i + '">' + f.restaurant_name + '</a><br/></div>')
+                    ul.append('<li class="span3"><div class="product-box"><span class="sale_tag"></span><br/><a class="rest_details" href="#' + i + '">' + f.restaurant_name + '</a><br/></div>')
                 });
-                $('a').on('click', addContent);
+                $('.rest_details').on('click', addContent);
             });
 
             function addContent(e) {
@@ -70,7 +70,7 @@
 	<div class="row"></div>
 	<div class="span11">
 		<div class="account pull-left ">
-			<img src="themes/images/logo.png" width=50% height=50% alt="logo"> </img>
+			<img src="../static/images/logo.png" width=50% height=50% alt="logo"> </img>
 		</div>
 		<div class="account pull-right">
 			<ul class="user-menu">
@@ -104,7 +104,7 @@
 		<span>copyright Mandar Gade, Neha Kumar, Varun Shah, Setu Pandya, San Jose State University</span>
 	</section>
 </div>
-<script src="themes/js/common.js"></script>
+<script src="../static/js/common.js"></script>
 </body>
 
 </html>

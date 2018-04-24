@@ -1,54 +1,86 @@
 <html lang="en">
 
 <head>
-	<!-- Required meta tags -->
 	<meta charset="utf-8">
-	<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<title>mySquareMeal - Login</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
+	<!-- bootstrap -->
+	<link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../static/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+	<link href="../static/css/bootstrappage.css" rel="stylesheet" />
 
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="./css/login.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-	<script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
-	<script type="text/javascript" charset="utf-8" src="./js/login.js"></script>
+	<!-- global styles -->
+	<link href="../static/css/flexslider.css" rel="stylesheet" />
+	<link href="../static/css/main.css" rel="stylesheet" />
 
+	<!-- scripts -->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script src="../static/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../static/js/superfish.js"></script>
+	<script src="../static/js/jquery.scrolltotop.js"></script>
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
 	<title>mySquareMeal - Login</title>
 </head>
 
 <body>
-<!-- Where all the magic happens -->
-<!-- LOGIN FORM -->
-<div class="text-center" style="padding:50px 0">
-	<div class="logo">Login</div>
-	<!-- Main Form -->
-	<div class="login-form-1">
-		<form id="login-form" class="text-left">
-			<div class="login-form-main-message"></div>
-			<div class="main-login-form">
-				<div class="login-group">
-					<div class="form-group">
-						<label for="lg_username" class="sr-only">Username</label>
-						<input type="text" class="form-control" id="lg_username" name="lg_username" placeholder="username">
-					</div>
-					<div class="form-group">
-						<label for="lg_password" class="sr-only">Password</label>
-						<input type="password" class="form-control" id="lg_password" name="lg_password" placeholder="password">
-					</div>
-				</div>
-				<button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
-			</div>
-			<div class="etc-login-form">
-				<p>Forgot your password? <a href="forgotpassword.html">Click here</a></p>
-				<p>New user? <a href="registration.html">Create New Account</a></p>
-			</div>
-		</form>
+
+<div id="top-bar" class="container">
+	<div class="row"></div>
+	<div class="span11">
+		<div class="account pull-left ">
+			<img src="../static/images/logo.png" width= 50% height= 50% alt="logo"> </img>
+		</div>
+		<div class="account pull-right">
+			<ul class="user-menu">
+				<li><a href="welcome.html">Welcome</a></li>
+				<li><a href="registration.html">Register</a></li>
+			</ul>
+		</div>
 	</div>
-	<!-- end:Main Form -->
 </div>
+<div id="wrapper" class="container">
+
+	<section class="main-content">
+
+		<div class="row">
+			<div  class="span12">
+				<h1 class="text-center">mySquareMeal</h1>
+				<div class = "text-center">
+					<form id="login-form">
+						<div></div>
+						<div>
+							<div>
+								<div class="form-group">
+									<label for="lg_username" class="sr-only">Username</label>
+									<input type="text" class="form-control" id="lg_username" name="lg_username" placeholder="username">
+								</div>
+								<div class="form-group">
+									<label for="lg_password" class="sr-only">Password</label>
+									<input type="password" class="form-control" id="lg_password" name="lg_password" placeholder="password">
+								</div>
+							</div>
+							<button type="submit" class="btn-round-lg"> Go </button>
+						</div>
+						<div>
+							<p>Forgot your password? <a href="forgotpassword.html">Click here</a></p>
+							<p>New user? <a href="registration.html">Create New Account</a></p>
+						</div>
+					</form>
+				</div>
+				<!-- end:Main Form -->
+			</div>
+		</div>
+	</section>
+	<section id="copyright">
+		<span>copyright Mandar Gade, Neha Kumar, Varun Shah, Setu Pandya, San Jose State University</span>
+	</section>
+</div>
+<script src="../static/js/common.js"></script>
 </body>
 
 </html>
