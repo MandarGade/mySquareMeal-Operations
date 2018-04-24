@@ -1,4 +1,4 @@
-<html lang="en">
+<html lang="en" ng-app="login_app" ng-controller="login_controller">
 
 <head>
 	<meta charset="utf-8">
@@ -26,6 +26,9 @@
 	<![endif]-->
 	<title>mySquareMeal - Login</title>
 </head>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 
 <body>
 
@@ -56,15 +59,15 @@
 						<div>
 							<div>
 								<div class="form-group">
-									<label for="lg_username" class="sr-only">Username</label>
-									<input type="text" class="form-control" id="lg_username" name="lg_username" placeholder="username">
+									<label for="lg_email" class="sr-only">Email</label>
+									<input type="text" class="form-control" id="lg_email" name="lg_email" placeholder="email" ng-model="email">
 								</div>
 								<div class="form-group">
 									<label for="lg_password" class="sr-only">Password</label>
-									<input type="password" class="form-control" id="lg_password" name="lg_password" placeholder="password">
+									<input type="password" class="form-control" id="lg_password" name="lg_password" placeholder="password" ng-model="password">
 								</div>
 							</div>
-							<button type="submit" class="btn-round-lg"> Go </button>
+							<button type="submit" class="btn-round-lg" ng-click="verification(email, password)"> Log in </button>
 						</div>
 						<div>
 							<p>Forgot your password? <a href="forgotpassword.html">Click here</a></p>
@@ -81,6 +84,7 @@
 	</section>
 </div>
 <script src="../static/js/common.js"></script>
+<script src="../static/login.js"></script>
 </body>
 
 </html>

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-cookies.js"></script>
 
 <head>
 	<meta charset="utf-8">
@@ -24,6 +26,7 @@
 	<script src="../static/bootstrap/js/bootstrap.min.js"></script>
 	<script src="../static/js/superfish.js"></script>
 	<script src="../static/js/jquery.scrolltotop.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 	<!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js	"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -35,8 +38,11 @@
             var div = $('#r_details');
             var ul = $('#r_list');
             var r_data = [];
-
-            $.getJSON("../api/response.json?", function(data) {
+            var i;
+            var restaurants_data = angular.element(document.querySelector('[ng-controller="restaurants_app_controller"]')).scope().restaurants_data
+            //var restaurants_data = $('[ng-controller="add"]').scope().restaurants_data;
+			console.log(restaurants_data)
+            $.getJSON(restaurants_data, function(data) {
                 $.each(data, function(i, f) {
                     r_data.push([f.restaurant_name, f.address.street_address, f.address.city, f.address.zip, f.menu_data]);
                     ul.append('<li class="span3"><div class="product-box"><span class="sale_tag"></span><br/><a class="rest_details" href="#' + i + '">' + f.restaurant_name + '</a><br/></div>')
@@ -45,27 +51,16 @@
             });
 
             function addContent(e) {
-                $("#r_details").html("");
-                e.preventDefault();
-                var hash = this.hash.replace('#','');
-                div.html('');
-                div.append('<p><b>Name:</b> ' + r_data[hash][0] + '</p>');
-                div.append('<p><b>Address:</b> ' + r_data[hash][1] + ", " + r_data[hash][2] + ", " + r_data[hash][3] + '</p>');
-                div.append('<p><b>Menu:</b> ' + '</p>');
-                for (i = 0 ; i < r_data[hash][4].length ; i++) {
-                    div.append('<p>'
-                        +
-                        r_data[hash][4][i]
-                        +
-                        '</p>');
-                }
+                //alert($(this).text());
+                Cookies.set('restaurant_name', $(this).text());
+                window.location.href = "restaurant_detail.html";
             }
         });
 
 	</script>
 </head>
 
-<body>
+<body ng-app="restaurants_app" ng-controller="restaurants_app_controller">
 <div id="top-bar" class="container">
 	<div class="row"></div>
 	<div class="span11">
@@ -86,17 +81,11 @@
 
 	<section class="main-content">
 
-			<div class="row">
+		<div class="row">
 			<div class="span12">
 				<ul class="thumbnails listing-products" id = "r_list" data-role="listview">
-					<!--<li class="span3">-->
-						<!--<div class="product-box">-->
-							<!--<span class="sale_tag"></span>-->
-							<!--<a href="product_detail.html" class="title"><div id = "r_name"></div></a><br/>-->
-						<!--</div>-->
-					<!--</li>-->
 				</ul>
-				<div id = r_details class = "text-center"></div>
+				<div id = "r_details" class = "text-center"></div>
 			</div>
 		</div>
 	</section>
@@ -105,6 +94,7 @@
 	</section>
 </div>
 <script src="../static/js/common.js"></script>
+<script src="../static/restaurants.js"></script>
 </body>
 
 </html>

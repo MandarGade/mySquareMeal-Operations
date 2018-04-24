@@ -7,26 +7,62 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
-
 	<!-- bootstrap -->
-	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
-	<link href="themes/css/bootstrappage.css" rel="stylesheet" />
+	<link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../static/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+	<link href="../static/css/bootstrappage.css" rel="stylesheet" />
 
 	<!-- global styles -->
-	<link href="themes/css/main.css" rel="stylesheet" />
-	<link href="themes/css/jquery.fancybox.css" rel="stylesheet" />
+	<link href="../static/css/flexslider.css" rel="stylesheet" />
+	<link href="../static/css/main.css" rel="stylesheet" />
 
 	<!-- scripts -->
-	<script src="themes/js/jquery-1.7.2.min.js"></script>
-	<script src="bootstrap/js/bootstrap.min.js"></script>
-	<script src="themes/js/superfish.js"></script>
-	<script src="themes/js/jquery.scrolltotop.js"></script>
-	<script src="themes/js/jquery.fancybox.js"></script>
+	<script
+			src="https://code.jquery.com/jquery-3.3.1.min.js"
+			integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+			crossorigin="anonymous"></script>
+	<script src="../static/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../static/js/superfish.js"></script>
+	<script src="../static/js/jquery.scrolltotop.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 	<!--[if lt IE 9]>
-	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<script src="js/respond.min.js"></script>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js	"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
 	<![endif]-->
+
+	<script>
+        $(function() {
+
+            var div = $('#r_details');
+            var r_data = [];
+            var i;
+
+            $.getJSON("../api/response.json?", function(data) {
+                $.each(data, function(i, f) {
+                    if(f.restaurant_name.toString() === Cookies.get().restaurant_name)
+                    {
+                        r_data.push([f.restaurant_name, f.address.street_address, f.address.city, f.address.zip, f.menu_data])
+                        $("#rname").append("MENU - " + r_data[0][0]);
+                        $("#raddress").append('<p><b></b> ' + r_data[0][1] + ", " + r_data[0][2] + ", " + r_data[0][3] + '</p>');
+                        $("#rmenu").append('<p><b></b> ' + '</p>');
+                        for (i = 0 ; i < r_data[0][4].length ; i++) {
+                            // $("#rmenu").append('<p>'
+                            //     +
+                            //     r_data[0][4][i]
+                            //     +
+                            //     '</p>');
+                            $("#rmenulist").append('<li class="span3">' +
+                                '<div class="product-box">' +
+                                '<span class="sale_tag"></span><br/>' +
+                                r_data[0][4][i]
+                                + '<br/></div>');
+                        };
+                    }
+                    //ul.append('<li class="span3"><div class="product-box"><span class="sale_tag"></span><br/><a class="rest_details" href="#' + i + '">' + f.restaurant_name + '</a><br/></div>')
+                });
+            });
+        });
+	</script>
 </head>
 
 <body>
@@ -46,36 +82,27 @@
 <div id="wrapper" class="container">
 
 	<section class="header_text sub">
-		<img class="pageBanner" src="themes/images/pageBanner.png" alt="New products">
-		<h4><span>Hotel/Food Detail</span></h4>
+		<img class="pageBanner" src="../static/images/pageBanner.png" alt="New products">
+		<h4><span><div id = "rname"></div></span></h4>
+		<div id = "raddress" class = text-center></div>
 	</section>
 	<section class="main-content">
 		<div class="row">
 			<div class="span12">
+				<div id = "r_details"></div>
 				<div class="row">
 					<div class="span4">
-						<a href="themes/images/ladies/1.jpg" class="thumbnail" data-fancybox-group="group1" title="Description 1"><img alt="" src="themes/images/ladies/1.jpg"></a>
-						<ul class="thumbnails small">
-							<li class="span1">
-								<a href="themes/images/ladies/2.jpg" class="thumbnail" data-fancybox-group="group1" title="Description 2"><img src="themes/images/ladies/2.jpg" alt=""></a>
-							</li>
-							<li class="span1">
-								<a href="themes/images/ladies/3.jpg" class="thumbnail" data-fancybox-group="group1" title="Description 3"><img src="themes/images/ladies/3.jpg" alt=""></a>
-							</li>
-							<li class="span1">
-								<a href="themes/images/ladies/4.jpg" class="thumbnail" data-fancybox-group="group1" title="Description 4"><img src="themes/images/ladies/4.jpg" alt=""></a>
-							</li>
-							<li class="span1">
-								<a href="themes/images/ladies/5.jpg" class="thumbnail" data-fancybox-group="group1" title="Description 5"><img src="themes/images/ladies/5.jpg" alt=""></a>
-							</li>
-						</ul>
+						<!--<a href="../static/images/ladies/1.jpg" class="thumbnail" data-fancybox-group="group1" title="Description 1"><img alt="" src="themes/images/ladies/1.jpg"></a>-->
+						<!--<ul class="thumbnails small">-->
+						<!--<li class="span1">-->
+						<!--<a href="../static/images/ladies/2.jpg" class="thumbnail" data-fancybox-group="group1" title="Description 2"><img src="themes/images/ladies/2.jpg" alt=""></a>-->
+						<!--</li>-->
+						<!--</ul>-->
 					</div>
-					<div class="span5">
+					<div class="span12">
 						<address>
-							<strong>Nmae:</strong> <span>Lorem Ipsum</span><br>
-							<strong>Lorem Ipsum:</strong> <span>Dolor sit</span><br>
-							<strong>Sed:</strong> <span> ut perspiciatis unde</span><br>
-							<strong>dolor:</strong> <span>Sit amet</span><br>
+							<div id = "rmenu" class = text-center></div>
+							<ul class="thumbnails listing-products" id = "rmenulist" data-role="listview"></ul>
 						</address>
 					</div>
 				</div>
@@ -86,7 +113,7 @@
 		<span>copyright Mandar Gade, Neha Kumar, Varun Shah, Setu Pandya, San Jose State University</span>
 	</section>
 </div>
-<script src="themes/js/common.js"></script>
+<script src="../static/js/common.js"></script>
 </body>
 
 </html>
