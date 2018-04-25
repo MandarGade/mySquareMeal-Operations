@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-cookies.js"></script>
 <head>
 	<meta charset="utf-8">
 	<title>mySquareMeal - Restaurant Menu</title>
@@ -29,7 +30,7 @@
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js	"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
 	<![endif]-->
-
+	<!--
 	<script>
         $(function() {
 
@@ -63,17 +64,18 @@
             });
         });
 	</script>
+	-->
 </head>
 
-<body>
+<body ng-app="restaurants_details_app" ng-controller="restaurants_details_app_controller">
 <div id="top-bar" class="container">
 	<div class="row">
 		<div class="span8">
 			<div class="account pull-right">
 				<ul class="user-menu">
-					<li><a href="home.html">Home</a></li>
-					<li><a href="restaurants.html">Restaurants</a></li>
-					<li><a href="logout.html">Logout</a></li>
+					<li><a href="{{url_for('home_redirect')}}">Home</a></li>
+					<li><a href="{{url_for('restaurants_redirect')}}">Restaurants</a></li>
+					<li><a href="{{url_for('logout_redirect')}}">Logout</a></li>
 				</ul>
 			</div>
 		</div>
@@ -114,6 +116,7 @@
 	</section>
 </div>
 <script src="../static/js/common.js"></script>
+<script src="../static/restaurant_details.js"></script>
 </body>
 
 </html>

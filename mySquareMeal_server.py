@@ -25,6 +25,20 @@ def home_redirect():
 def restaurants_redirect():
     return render_template('restaurants.html')
 
+
+@app.route("/map_view")
+def map_redirect():
+    return render_template('mapview.html')
+
+@app.route("/profile")
+def profile_redirect():
+    return render_template('welcome.html')
+
+
+@app.route("/restaurants_details")
+def rest_details_redirect():
+    return  render_template('restaurant_detail.html')
+
 @app.route("/logout")
 def logout_redirect():
     return render_template('welcome.html')
