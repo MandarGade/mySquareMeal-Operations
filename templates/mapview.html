@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-cookies.js"></script>
+<script src="../static/mapview.js"></script>
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=yourApiKey"></script>
+
+
 
 <head>
     <meta charset="utf-8">
@@ -28,7 +36,7 @@
     <![endif]-->
 </head>
 
-<body>
+<body ng-app="map_app" ng-controller="map_app_controller">
 <div id="top-bar" class="container">
     <div class="row"></div>
     <div class="span11">
@@ -37,10 +45,10 @@
         </div>
         <div class="account pull-right">
             <ul class="user-menu">
-                <li><a href="home.html">Home</a></li>
-                <li><a href="profile.html">Profile</a></li>
-                <li><a href="restaurants.html">Switch to List View</a></li>
-                <li><a href="welcome.html">Logout</a></li>
+                <li><a href="{{url_for('home_redirect')}}">Home</a></li>
+                <li><a href="{{url_for('profile_redirect')}}">Profile</a></li>
+                <li><a href="{{url_for('restaurants_redirect')}}">Switch to List View</a></li>
+                <li><a href="{{url_for('logout_redirect')}}">Logout</a></li>
             </ul>
         </div>
     </div>
@@ -52,7 +60,8 @@
         <div class="row">
             <div class="span12">
                 <br>
-                <div id="map" style="width: 100%; height: 400px;"></div>
+                <div id="map" style="width: 100%; height: 400px;">
+                </div>
             </div>
         </div>
     </section>
@@ -61,7 +70,5 @@
     </section>
 </div>
 <script src="../static/js/common.js"></script>
-<script src="http://maps.google.com/maps/api/js?key=AIzaSyBPHEZCEjTqjXP5xNFmh97wjAU3FwBwmEU" type="text/javascript"></script>
-<script type="text/javascript" src="../static/mapview.js"></script>
 </body>
 </html>

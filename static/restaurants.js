@@ -6,16 +6,11 @@ angular.module('restaurants_app', ['ngCookies'])
         console.log(latitude)
         $http({
                 method: 'POST',
-                url: 'http://9522196b.ngrok.io/recommendation',
+                url: 'https://2c00b2fc.ngrok.io/recommendation',
                 headers: { 'Content-Type': 'application/json' },
                 data: {'latitude':latitude, 'longitude':longitude}
             }).then(function (response) {
                 if(response.status == 200){
-                    //response_data = JSON.stringify(response);
-                    //console.log(JSON.parse(response_data).data);
-                    //$scope.restaurants_data = JSON.parse(response_data).data;
-                    //$scope.restaurants_data = response_data
-                    //console.log(rest_data.restaurant_name)
                     var rest_data=response.data
                     var array_length=rest_data.length;
                     var i;

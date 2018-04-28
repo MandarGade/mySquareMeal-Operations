@@ -7,7 +7,7 @@ angular.module('restaurants_details_app', ['ngCookies'])
         console.log(rest_name)
         $http({
             method: 'POST',
-            url: 'http://9522196b.ngrok.io/recommendation',
+            url: 'https://2c00b2fc.ngrok.io/recommendation',
             headers: { 'Content-Type': 'application/json' },
             data: {'latitude':latitude, 'longitude':longitude}
         }).then(function (response) {

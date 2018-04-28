@@ -40,8 +40,7 @@
 		</div>
 		<div class="account pull-right">
 			<ul class="user-menu">
-				<li><a href="welcome.html">Welcome</a></li>
-				<li><a href="registration.html">Register</a></li>
+				<li><a href="{{url_for('index')}}">Welcome</a></li>
 			</ul>
 		</div>
 	</div>
@@ -71,7 +70,7 @@
 						</div>
 						<div>
 							<p>Forgot your password? <a href="forgotpassword.html">Click here</a></p>
-							<p>New user? <a href="registration.html">Create New Account</a></p>
+							<p>New user? <a href="{{url_for('registration_redirect')}}">Create New Account</a></p>
 						</div>
 					</form>
 				</div>
