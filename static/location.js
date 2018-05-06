@@ -78,12 +78,14 @@ function locbtn() {
 angular.module('home_app', ['ngCookies'])
     .controller('home_app_controller',[ '$scope', '$http','$cookies',function ($scope, $http, $cookies) {
         $scope.request_recommendations = function (latitude, longitude) {
+            console.log('location controller');
             console.log(latitude);
             console.log(longitude);
             $cookies.remove('latitude')
             $cookies.remove('longitude')
             $cookies.put('latitude',latitude)
             $cookies.put('longitude',longitude)
+            console.log($cookies.get('email'));
             window.location.href = '/restaurants';
         };
     }]);

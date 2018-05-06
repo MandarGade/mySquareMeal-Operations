@@ -1,12 +1,13 @@
 angular.module('restaurants_app', ['ngCookies'])
     .controller('restaurants_app_controller',[ '$scope', '$http','$cookies',function ($scope, $http, $cookies) {
         console.log('inside restaurants controller')
+        console.log($cookies.get('email'))
         var latitude = $cookies.get('latitude');
         var longitude = $cookies.get('longitude');
         console.log(latitude)
         $http({
                 method: 'POST',
-                url: 'https://2c00b2fc.ngrok.io/recommendation',
+                url: 'http://e29d0bca.ngrok.io/recommendation',
                 headers: { 'Content-Type': 'application/json' },
                 data: {'latitude':latitude, 'longitude':longitude}
             }).then(function (response) {

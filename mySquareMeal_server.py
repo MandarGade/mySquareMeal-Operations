@@ -17,6 +17,11 @@ def index():
 def login_redirect():
     return render_template('login.html')
 
+
+@app.route("/registration")
+def registration_redirect():
+    return render_template('registration.html')
+
 @app.route("/home")
 def home_redirect():
     return render_template('home.html')
@@ -46,6 +51,9 @@ def logout_redirect():
 @app.route("/registration", methods=['POST'])
 def user_registration():
     request_data=request.get_json()
+    #user_email = request_data.get('email')
+    #user_password = request_data.get('password')
+    #user_allergies = request_data.get('allergies')
     registration_response=registration.create_user_profile(request_data)
     return registration_response
 

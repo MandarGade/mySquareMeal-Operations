@@ -1,6 +1,6 @@
-var login_application = angular.module('login_app',[])
+var login_application = angular.module('login_app',['ngCookies'])
 
-login_application.controller('login_controller',['$scope','$http', function ($scope, $http) {
+login_application.controller('login_controller',['$scope','$http','$cookies', function ($scope, $http, $cookies) {
 
     console.log('inside login controller')
     
@@ -18,7 +18,10 @@ login_application.controller('login_controller',['$scope','$http', function ($sc
         }).then(function (response) {
             console.log(response.data)
             if(response.data == 'success'){
-                window.location.href = '/home'
+                console.log('redirecting to home...')
+                $cookies.put('email',email);
+                window.location.href = '/home';
+                //console.log($cookies.get('email'));
             }
             else if(response.data == 'failure'){
                 console.log('Invalid credentials')

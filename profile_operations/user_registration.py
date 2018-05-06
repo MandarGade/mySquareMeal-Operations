@@ -25,15 +25,26 @@ class registration:
 
 
     def create_user_profile(user_data):
+        print(user_data)
         try:
             email = user_data["email"]
+            password = user_data["password"]
+            allergies = user_data["allergies"]
+            allergies_list = allergies.split(",")
             print('--------------------------------------------------------------\n'+email)
             user_exists = registration.check_existing_user(email)
             if user_exists:
                 return 'failure - user exists'
             else:
-                db.user_profile_collection.insert(user_data)
+                user_details = {
+                    "food_to_avoid": allergies_list,
+                    "password": password,
+                    "email": email
+                }
+                db.user_profile_collection.insert(user_details)
                 print('new user created with email address : '+email)
+                print('new user created with password : '+password)
+                print('new user created with allergies : '+allergies)
                 return 'success'
         except:
             print('user profile not created')

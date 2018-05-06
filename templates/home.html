@@ -34,7 +34,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-cookies.js"></script>
 
-<body>
+<body ng-app='home_app' ng-controller="home_app_controller">
 <div id="top-bar" class="container">
     <div class="row"></div>
     <div class="span11">
@@ -60,7 +60,7 @@
                         <input id="pac-input" type="text" placeholder="Enter a location">
                     </div>
                     <div id="user-location">
-                        <button id="loc-btn" type="button" class="btn btn-info"  ng-app='home_app' ng-controller="home_app_controller" onclick="locbtn()">Go</button>
+                        <button id="loc-btn" type="button" class="btn btn-info" onclick="locbtn()">Go</button>
                     </div>
                     <div id="map"></div>
                     <div id="infowindow-content">
