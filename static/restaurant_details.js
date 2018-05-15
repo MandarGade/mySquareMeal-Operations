@@ -4,12 +4,13 @@ angular.module('restaurants_details_app', ['ngCookies'])
         var rest_name = $cookies.get('restaurant_name');
         var latitude = $cookies.get('latitude');
         var longitude = $cookies.get('longitude');
+        var email = $cookies.get('email');
         console.log(rest_name)
         $http({
             method: 'POST',
-            url: 'http://e11ffd0f.ngrok.io/recommendation',
+            url: 'http://d1e35c2c.ngrok.io/recommendation',
             headers: { 'Content-Type': 'application/json' },
-            data: {'latitude':latitude, 'longitude':longitude}
+            data: {'latitude':latitude, 'longitude':longitude, 'email':email}
         }).then(function (response) {
             if(response.status == 200){
                 var rest_data=response.data

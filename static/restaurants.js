@@ -2,14 +2,15 @@ angular.module('restaurants_app', ['ngCookies'])
     .controller('restaurants_app_controller',[ '$scope', '$http','$cookies',function ($scope, $http, $cookies) {
         console.log('inside restaurants controller')
         console.log($cookies.get('email'))
+        var email = $cookies.get('email');
         var latitude = $cookies.get('latitude');
         var longitude = $cookies.get('longitude');
         console.log(latitude)
         $http({
                 method: 'POST',
-                url: 'http://e11ffd0f.ngrok.io/recommendation',
+                url: 'http://d1e35c2c.ngrok.io/recommendation',
                 headers: { 'Content-Type': 'application/json' },
-                data: {'latitude':latitude, 'longitude':longitude}
+                data: {'latitude':latitude, 'longitude':longitude, 'email':email}
             }).then(function (response) {
                 if(response.status == 200) {
                     if (response.data != "city not found in database") {
