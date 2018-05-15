@@ -53,20 +53,26 @@
 			<div  class="span12">
 				<h1 class="text-center">mySquareMeal</h1>
 				<div class = "text-center">
-					<form id="login-form">
+					<form id="login-form" name="loginform" novalidate class="ng-invalid">
 						<div></div>
 						<div>
 							<div>
 								<div class="form-group">
-									<label for="lg_email" class="sr-only">Email</label>
-									<input type="text" class="form-control" id="lg_email" name="lg_email" placeholder="email" ng-model="email">
+									<label for="lg_email" class="sr-only">Email <sup style="color: red">(*required)</sup></label>
+									<input type="text" class="form-control" id="lg_email" name="lg_email" placeholder="email" ng-required="true" ng-model="email">
+									<!--<span style="color: red" ng-if="loginform.lg_email.$error.required && loginform.lg_email.$dirty"><br>Email is required</br></span>-->
 								</div>
 								<div class="form-group">
-									<label for="lg_password" class="sr-only">Password</label>
-									<input type="password" class="form-control" id="lg_password" name="lg_password" placeholder="password" ng-model="password">
+									<label for="lg_password" class="sr-only">Password <sup style="color: red">(*required)</sup></label>
+									<input type="password" class="form-control" id="lg_password" name="lg_password" placeholder="password" ng-required="true" ng-model="password">
+									<!--<span style="color: red" ng-if="loginform.lg_password.$error.required && loginform.lg_password.$dirty"><br>Password is required</br></span>-->
 								</div>
 							</div>
-							<button type="submit" class="btn-round-lg" ng-click="verification(email, password)"> Log in </button>
+							<button type="submit" class="btn-round-lg" ng-disabled="loginform.$invalid" ng-click="verification(email, password)"> Log in </button>
+						</div>
+						<div id="profile_alert" style="margin-top: 5px">
+						</div>
+						<div id="password_alert" style="margin-top: 5px">
 						</div>
 						<div>
 							<p>Forgot your password? <a href="forgotpassword.html">Click here</a></p>

@@ -44,39 +44,43 @@ map_application.controller('map_app_controller',['$scope','$http','$cookies', fu
 
     $http({
         method: 'POST',
-        url: 'http://e29d0bca.ngrok.io/recommendation',
+        url: 'http://e11ffd0f.ngrok.io/recommendation',
         headers: { 'Content-Type': 'application/json' },
         data: {'latitude':latitude, 'longitude':longitude}
     }).then(function (response) {
-        if(response.status == 200){
-            var rest_data=response.data;
-            //console.log(rest_data);
-            var array_length=rest_data.length;
-            var i;
-            //var restaurants_name_array=[];
+        if(response.status == 200) {
+            if (response.data != "city not found in database") {
+                var rest_data = response.data;
+                //console.log(rest_data);
+                var array_length = rest_data.length;
+                var i;
+                //var restaurants_name_array=[];
 
-            for(i=0;i< array_length;i++)
-            {
-                restaurant_details_array=[];
-                var rest_name = rest_data[i].restaurant_name;
-                var latitude = rest_data[i].address.latitude;
-                var longitude = rest_data[i].address.longitude;
-                restaurant_details_array.push(rest_name);
-                restaurant_details_array.push(Number(latitude));
-                restaurant_details_array.push(Number(longitude));
-                restaurants_array.push(restaurant_details_array);
+                for (i = 0; i < array_length; i++) {
+                    restaurant_details_array = [];
+                    var rest_name = rest_data[i].restaurant_name;
+                    var latitude = rest_data[i].address.latitude;
+                    var longitude = rest_data[i].address.longitude;
+                    restaurant_details_array.push(rest_name);
+                    restaurant_details_array.push(Number(latitude));
+                    restaurant_details_array.push(Number(longitude));
+                    restaurants_array.push(restaurant_details_array);
+                }
+
+                //console.log(restaurants_array)
+
+                var j;
+                for (j = 0; j < restaurants_array.length; j++) {
+                    var name = restaurants_array[j][0];
+                    var location = {lat: restaurants_array[j][1], lng: restaurants_array[j][2]};
+                    place_marker(map, name, location)
+                }
+            }
+            else if(response.data == "city not found in database"){
+                angular.element(document.getElementById("city_alert")).append(angular.element('<div class="alert alert-info alert-dismissible" style="height: 30px; width: 50%; margin-left: 27%; margin-right: 27%"> <a class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>No results available for this address !!! </strong>  Please provide address from supported cities !</div>'));
             }
 
-            //console.log(restaurants_array)
-
-            var j;
-            for(j=0; j< restaurants_array.length; j++){
-                var name = restaurants_array[j][0];
-                var location = {lat: restaurants_array[j][1], lng: restaurants_array[j][2]};
-                place_marker(map, name, location)
-            }
         }
-
         else{
             console.log('can not display result...')
         }
