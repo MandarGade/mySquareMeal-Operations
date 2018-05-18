@@ -1,5 +1,7 @@
 <html lang="en">
-
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-cookies.js"></script>
+<script src="../static/profile.js"></script>
 <head>
     <meta charset="utf-8">
     <title>mySquareMeal - Update Your Profile</title>
@@ -26,8 +28,7 @@
     <![endif]-->
 </head>
 
-<body>
-
+<body ng-app="profile_app" ng-controller="profile_controller">
 <div id="top-bar" class="container">
     <div class="row"></div>
     <div class="span11">
@@ -36,8 +37,9 @@
         </div>
         <div class="account pull-right">
             <ul class="user-menu">
-                <li><a href="welcome.html">Signout</a></li>
-                <li><a href="home.html">Home</a></li>
+                <li><a href="{{url_for('home_redirect')}}">Home</a></li>
+                <li><a href="{{url_for('restaurants_redirect')}}">Restaurants</a></li>
+                <li><a href="{{url_for('logout_redirect')}}">Logout</a></li>
             </ul>
         </div>
     </div>
@@ -50,40 +52,31 @@
             <div  class="span12">
                 <h1 class="text-center">mySquareMeal</h1>
                 <div class = "text-center">
-                    <br id="register-form">
+                    <form id="profile-form-id" name="profile_form" novalidate class="ng-invalid">
+                    <br>
+                        <h4>Your food allergies:</h4>
+                        <div id="allergy_list_div">
+                            <ul id="allergy_list">
+
+                            </ul>
+                        </div>
                         <br>
                         <div class = "justify-content-between">
-                            <!--<div class="form-group">-->
-                                <!--<label for="reg_username"><h4>Email address</h4></label>-->
-                                <!--<input type="text" class="form-control" id="reg_username" name="reg_username" placeholder="username">-->
-                            <!--</div>-->
-                            <!--<div class="form-group">-->
-                                <!--<label for="reg_password"><h4>Password</h4></label>-->
-                                <!--<input type="password" class="form-control" id="reg_password" name="reg_password" placeholder="password">-->
-                            <!--</div>-->
-                            <!--<div class="form-group">-->
-                                <!--<label for="reg_password_confirm"><h4>Confirm Password</h4></label>-->
-                                <!--<input type="password" class="form-control" id="reg_password_confirm" name="reg_password_confirm" placeholder="confirm password">-->
-                            <!--</div>-->
-                            <!--<div class="form-group">-->
-                                <!--<label for="reg_firstname">First Name</label>-->
-                                <!--<input type="text" class="form-control" id="reg_firstname" name="reg_firstname" placeholder="first name">-->
-                            <!--</div>-->
-                            <!--<div class="form-group">-->
-                                <!--<label for="reg_lastname">Last Name</label>-->
-                                <!--<input type="text" class="form-control" id="reg_lastname" name="reg_lastname" placeholder="last name">-->
-                            <!--</div>-->
                             <div class="form-group">
-                                <label for="reg_foodprefs"><h4>Food preferences</h4></label>
-                                <input type="text" class="form-control" id="reg_foodprefs" name="reg_foodprefs" placeholder="food preferences">
+                                <label for="reg_foodprefs"><h4>Remove current or add new food allergy items</h4><sup style="color: red">*</sup><text style="color: red">(separate by Comma)</text></label>
+                                <input type="text" class="form-control" id="reg_foodprefs" name="reg_foodprefs" placeholder="food preferences" ng-model="allergies" ng-pattern="input_list" ng-required="true" ng-change="check_input_list()">
+                                <span style="color: red" ng-if="profile_form.reg_foodprefs.$error.required && profile_form.reg_foodprefs.$dirty"><br>Food allergy information is required</br></span>
+                                <span style="color:red" ng-show="profile_form.reg_foodprefs.$error.pattern"><br>Use letters and comma</br></span>
+
                             </div>
                         </div>
                         <br>
-                        <button type="submit" class="btn-round-lg">Go</button>
+                        <button type="submit" id="submit" name="submit" class="btn btn-round-lg" ng-disabled="profile_form.$invalid" ng-click="add_allergies(allergies)">Add</button>
                         <br>
-                        <div>
-                            <p><h4>Already have an account? <a href="login.html">login here</a></h4></p>
-                        </div>
+                        <br>
+                        <button type="submit" id="submit" name="submit" class="btn btn-round-lg" ng-disabled="profile_form.$invalid" ng-click="remove_allergies(allergies)">Remove</button>
+                        <br>
+
                     </form>
                 </div>
                 <!-- end:Main Form -->

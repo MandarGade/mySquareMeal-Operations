@@ -17,6 +17,9 @@ def index():
 def login_redirect():
     return render_template('login.html')
 
+@app.route("/profile")
+def profile_redirect():
+    return render_template('profile.html')
 
 @app.route("/registration")
 def registration_redirect():
@@ -34,10 +37,6 @@ def restaurants_redirect():
 @app.route("/map_view")
 def map_redirect():
     return render_template('mapview.html')
-
-@app.route("/profile")
-def profile_redirect():
-    return render_template('welcome.html')
 
 
 @app.route("/restaurants_details")
@@ -71,7 +70,7 @@ def user_authentication():
        # return authentication_result
     else:
         return authentication_result
-
+'''
 @app.route("/logout",methods=['POST','GET'])
 def user_logout():
     if 'user_email' in session:
@@ -82,7 +81,28 @@ def user_logout():
 
     else:
         return 'failure'
+'''
 
+@app.route("/add_to_profile",methods=['POST','GET'])
+def add_to_user_profile():
+    request_data=request.get_json()
+    #print(request_data)
+    response=registration.add_user_allergies(request_data)
+    return response
+
+@app.route("/remove_from_profile",methods=['POST','GET'])
+def remove_from_user_profile():
+    request_data=request.get_json()
+    #print(request_data)
+    response=registration.remove_user_allergies(request_data)
+    return response
+
+@app.route("/get_profile_data",methods=['POST','GET'])
+def get_user_profile():
+    request_data=request.get_json()
+    #print(request_data)
+    response=registration.get_user_allergies(request_data)
+    return response
 
 if __name__=='__main__':
     app.secret_key = 'any random string'

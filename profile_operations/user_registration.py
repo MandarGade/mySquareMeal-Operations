@@ -30,6 +30,7 @@ class registration:
             email = user_data["email"]
             password = user_data["password"]
             allergies = user_data["allergies"]
+            allergies = allergies.replace(" ","")
             allergies_list = allergies.split(",")
             print('--------------------------------------------------------------\n'+email)
             user_exists = registration.check_existing_user(email)
@@ -51,6 +52,53 @@ class registration:
             return 'failure'
             raise
 
+
+    def add_user_allergies(user_data):
+        email = user_data["email"]
+        allergies = user_data["allergies"]
+        allergies = allergies.replace(" ","")
+        print("Updating Profile for: "+str(email))
+        allergy_list = allergies.split(',')
+        try:
+            for each in allergy_list:
+                db['user_profile_collection'].update({'email':email},
+                                                     {'$push':{'food_to_avoid':each}})
+            return 'success'
+        except:
+            return 'failure'
+            raise
+
+        return 'failure'
+
+
+    def remove_user_allergies(user_data):
+        email = user_data["email"]
+        allergies = user_data["allergies"]
+        allergies = allergies.replace(" ","")
+        print("Updating Profile for: "+str(email))
+        allergy_list = allergies.split(',')
+        try:
+            for each in allergy_list:
+                db['user_profile_collection'].update({'email':email},
+                                                     {'$pull':{'food_to_avoid':each}})
+            return 'success'
+        except:
+            return 'failure'
+            raise
+
+        return 'failure'
+
+
+
+    def get_user_allergies(user_data):
+        email = user_data["email"]
+        print("getting user profile data for: "+str(email))
+        profile_data = db['user_profile_collection'].find({'email':email})
+        print(profile_data)
+        for doc in profile_data:
+            food_to_avoid = doc["food_to_avoid"]
+
+        return json.dumps({"allergies":food_to_avoid})
 
 
 
