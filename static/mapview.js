@@ -45,7 +45,7 @@ map_application.controller('map_app_controller',['$scope','$http','$cookies', fu
 
     $http({
         method: 'POST',
-        url: 'http://a76c02cd.ngrok.io/recommendation',
+        url: 'http://ec2-18-221-96-111.us-east-2.compute.amazonaws.com/recommendation',
         headers: { 'Content-Type': 'application/json' },
         data: {'latitude':latitude, 'longitude':longitude, 'email':email}
     }).then(function (response) {
